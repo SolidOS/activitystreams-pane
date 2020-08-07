@@ -25,6 +25,7 @@
     "solid-ui": "^2.2.0"
   },
   "devDependencies": {
+    "solid-auth-cli": "^1.0.14",
     "typescript": "^3.9.7"
   }
 }
