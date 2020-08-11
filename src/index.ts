@@ -1,6 +1,7 @@
 import { icons, ns } from "solid-ui";
-import { NamedNode, Node } from "rdflib";
+import { NamedNode } from "rdflib";
 import { DataBrowserContext } from "pane-registry";
+import { Note, readFromStore } from "./note/data";
 
 export const NotePane = {
   global: false,
@@ -22,7 +23,7 @@ export const NotePane = {
 
   render: (subject: NamedNode, context: DataBrowserContext): HTMLElement => {
     const store = context.session.store;
-    const content: Node = store.any(subject, ns.as("content"));
+    const note: Note = readFromStore(subject, store);
 
     const element = document.createElement("div");
 
@@ -31,7 +32,7 @@ export const NotePane = {
     heading.appendChild(text);
 
     const contentDiv = document.createElement("div");
-    const contentText = document.createTextNode(content.value);
+    const contentText = document.createTextNode(note.content);
     contentDiv.appendChild(contentText);
 
     element.appendChild(heading);
