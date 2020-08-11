@@ -1,4 +1,6 @@
 import { icons, ns } from "solid-ui";
+import { NamedNode, Node } from "rdflib";
+import { DataBrowserContext } from "pane-registry";
 
 export const NotePane = {
   global: false,
@@ -7,7 +9,10 @@ export const NotePane = {
 
   name: "profile",
 
-  label: function (subject, context) {
+  label: function (
+    subject: NamedNode,
+    context: DataBrowserContext
+  ): string | null {
     const t = context.session.store.findTypeURIs(subject);
     if (t[ns.as("Note").uri]) {
       return "Note";
@@ -15,9 +20,9 @@ export const NotePane = {
     return null;
   },
 
-  render: (subject, context) => {
+  render: (subject: NamedNode, context: DataBrowserContext): HTMLElement => {
     const store = context.session.store;
-    const content = store.any(subject, ns.as("content"));
+    const content: Node = store.any(subject, ns.as("content"));
 
     const element = document.createElement("div");
 
@@ -26,7 +31,7 @@ export const NotePane = {
     heading.appendChild(text);
 
     const contentDiv = document.createElement("div");
-    const contentText = document.createTextNode(content);
+    const contentText = document.createTextNode(content.value);
     contentDiv.appendChild(contentText);
 
     element.appendChild(heading);
