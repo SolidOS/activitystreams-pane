@@ -1,13 +1,17 @@
 {
   "name": "activitystreams-pane",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "prepublishOnly": "npm run lint && npm run test && npm run build"
   },
+  "files": [
+    "/lib"
+  ],
   "keywords": [
     "solid",
     "activitystreams",
