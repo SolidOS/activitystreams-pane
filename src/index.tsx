@@ -6,7 +6,7 @@ import { DataBrowserContext } from "pane-registry";
 import { Note, NoteCard, readFromStore } from "./note";
 import { createElement } from "./dom";
 
-export const NotePane = {
+const Pane = {
   global: false,
 
   icon: icons.iconBase + "noun_15695.svg",
@@ -31,3 +31,5 @@ export const NotePane = {
     return createElement(jsx);
   },
 };
+
+export default Pane;
