@@ -1,7 +1,10 @@
+import * as React from "react";
+import { ReactElement } from "react";
 import { icons, ns } from "solid-ui";
 import { NamedNode } from "rdflib";
 import { DataBrowserContext } from "pane-registry";
-import { Note, readFromStore } from "./note/data";
+import { Note, NoteCard, readFromStore } from "./note";
+import { createElement } from "./dom";
 
 export const NotePane = {
   global: false,
@@ -24,19 +27,7 @@ export const NotePane = {
   render: (subject: NamedNode, context: DataBrowserContext): HTMLElement => {
     const store = context.session.store;
     const note: Note = readFromStore(subject, store);
-
-    const element = document.createElement("div");
-
-    const heading = document.createElement("h2");
-    const text = document.createTextNode("This is a as:Note");
-    heading.appendChild(text);
-
-    const contentDiv = document.createElement("div");
-    const contentText = document.createTextNode(note.content);
-    contentDiv.appendChild(contentText);
-
-    element.appendChild(heading);
-    element.appendChild(contentDiv);
-    return element;
+    const jsx: ReactElement = <NoteCard {...note} />;
+    return createElement(jsx);
   },
 };

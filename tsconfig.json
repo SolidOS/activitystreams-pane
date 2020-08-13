@@ -4,6 +4,7 @@
     "module": "commonjs",
     "strict": false,
     "outDir": "lib",
-    "sourceMap": true
+    "sourceMap": true,
+    "jsx": "react"
   }
 }
