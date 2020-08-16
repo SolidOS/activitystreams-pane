@@ -6,5 +6,6 @@
     "outDir": "lib",
     "sourceMap": true,
     "jsx": "react"
-  }
+  },
+  "exclude": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.stories.tsx"]
 }
