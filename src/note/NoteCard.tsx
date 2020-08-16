@@ -7,6 +7,7 @@ import { FormattedDate } from "./FormattedDate";
 
 const useStyles = createUseStyles({
   card: {
+    fontFamily: "sans-serif",
     display: "flex",
     flexWrap: "wrap",
     borderRadius: "4px",
@@ -17,14 +18,20 @@ const useStyles = createUseStyles({
     alignItems: "center",
     transition: "all .25s ease-in-out",
   },
+  content: {
+    fontSize: "larger",
+  },
+  date: {
+    color: "rgb(0, 0, 0, 60%)",
+  },
 });
 
 export const NoteCard = ({ content, published }: Note): ReactElement => {
   const classes = useStyles();
   return (
     <div className={classes.card}>
-      <p>{content}</p>
-      <FormattedDate value={published} />
+      <p className={classes.content}>{content}</p>
+      <FormattedDate className={classes.date} value={published} />
     </div>
   );
 };
