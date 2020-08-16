@@ -3,6 +3,7 @@ import { ReactElement } from "react";
 import { createUseStyles } from "react-jss";
 
 import { Note } from "./types";
+import { FormattedDate } from "./FormattedDate";
 
 const useStyles = createUseStyles({
   card: {
@@ -18,11 +19,12 @@ const useStyles = createUseStyles({
   },
 });
 
-export const NoteCard = ({ content }: Note): ReactElement => {
+export const NoteCard = ({ content, published }: Note): ReactElement => {
   const classes = useStyles();
   return (
     <div className={classes.card}>
       <p>{content}</p>
+      <FormattedDate value={published} />
     </div>
   );
 };

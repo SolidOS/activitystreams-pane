@@ -21,3 +21,9 @@ TextOnly.args = {
   content:
     "This is a simple note, just showing some textual content. No author, no date, nothing but the text.",
 };
+
+export const Published = Template.bind({});
+Published.args = {
+  content: "This is a simple textual note with a published date",
+  published: new Date(),
+};
