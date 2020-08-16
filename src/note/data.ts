@@ -1,10 +1,7 @@
 import { NamedNode } from "rdflib";
 import { LiveStore } from "pane-registry";
 import { ns } from "solid-ui";
-
-export interface Note {
-  content: string;
-}
+import { Note } from "./types";
 
 export function readFromStore(
   subject: NamedNode,

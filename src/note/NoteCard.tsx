@@ -1,6 +1,8 @@
 import * as React from "react";
-
+import { ReactElement } from "react";
 import { createUseStyles } from "react-jss";
+
+import { Note } from "./types";
 
 const useStyles = createUseStyles({
   card: {
@@ -13,12 +15,8 @@ const useStyles = createUseStyles({
     boxShadow: "0 1px 5px rgba(0,0,0,0.2)",
     alignItems: "center",
     transition: "all .25s ease-in-out",
-    width: "100%",
   },
 });
-
-import { Note } from "./data";
-import { ReactElement } from "react";
 
 export const NoteCard = ({ content }: Note): ReactElement => {
   const classes = useStyles();
