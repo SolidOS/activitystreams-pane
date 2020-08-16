@@ -8,6 +8,7 @@ export function readFromStore(
   store: LiveStore
 ): Note | null {
   const content = store.any(subject, ns.as("content"));
+  const published = store.any(subject, ns.as("published"));
 
   if (!content) {
     return null;
@@ -15,5 +16,6 @@ export function readFromStore(
 
   return {
     content: content.value,
+    published: published && new Date(published.value),
   };
 }
