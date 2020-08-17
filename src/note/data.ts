@@ -9,6 +9,7 @@ export function readFromStore(
 ): Note | null {
   const content = store.any(subject, ns.as("content"));
   const published = store.any(subject, ns.as("published"));
+  const attributedTo = store.any(subject, ns.as("attributedTo"));
 
   if (!content) {
     return null;
@@ -17,5 +18,6 @@ export function readFromStore(
   return {
     content: content.value,
     published: published && new Date(published.value),
+    attributedTo,
   };
 }

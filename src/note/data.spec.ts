@@ -74,4 +74,33 @@ describe("read note from store", () => {
       });
     });
   });
+
+  describe("GIVEN a store containing a note that is attributed to someone", () => {
+    let store;
+    beforeEach(() => {
+      store = graph();
+      store.add(
+        sym("https://pod.example/note#it"),
+        ns.as("content"),
+        "The content of the note",
+        sym("https://pod.example/note")
+      );
+      store.add(
+        sym("https://pod.example/note#it"),
+        ns.as("attributedTo"),
+        sym("https://pod.example/person#me"),
+        sym("https://pod.example/note")
+      );
+    });
+    describe("WHEN trying to read a note", () => {
+      let note;
+      beforeEach(() => {
+        note = readFromStore(sym("https://pod.example/note#it"), store);
+      });
+      it("THEN the note links to the attribution", () => {
+        expect(note).not.toBeNull();
+        expect(note.attributedTo).toEqual(sym("https://pod.example/person#me"));
+      });
+    });
+  });
 });
