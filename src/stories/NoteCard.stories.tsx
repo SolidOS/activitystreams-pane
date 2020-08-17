@@ -1,13 +1,9 @@
 import * as React from "react";
 
-/*
- importing from "../note" currently fails due missing node builtIns (fs)
- */
-import { NoteCard } from "../note/NoteCard";
-import { Note } from "../note/types";
+import { NoteCard, Note } from "../note";
 
-// also exported from '@storybook/react' if you can deal with breaking changes in 6.1
-import { Story, Meta } from "@storybook/react/types-6-0";
+import { Story, Meta } from "@storybook/react";
+import { sym } from "rdflib";
 
 export default {
   title: "NoteCard",
@@ -38,4 +34,17 @@ export const PublishedLastYear = Template.bind({});
 PublishedLastYear.args = {
   content: "This is a simple textual note, that was published last year",
   published: new Date(Date.now() - 400 * 24 * 60 * 60 * 1000),
+};
+
+export const AttributedTo = Template.bind({});
+AttributedTo.args = {
+  content: "This is a simple textual note, attributed to a person",
+  attributedTo: sym("https://pod.example/person#me"),
+};
+
+export const PublishedAndAttributed = Template.bind({});
+PublishedAndAttributed.args = {
+  content: "This is a simple textual note, attributed to a person",
+  attributedTo: sym("https://pod.example/person#me"),
+  published: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
 };
