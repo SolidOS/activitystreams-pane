@@ -21,3 +21,21 @@ TextOnly.args = {
   content:
     "This is a simple note, just showing some textual content. No author, no date, nothing but the text.",
 };
+
+export const PublishedJustNow = Template.bind({});
+PublishedJustNow.args = {
+  content: "This is a simple textual note, that was published just now",
+  published: new Date(),
+};
+
+export const PublishedLastWeek = Template.bind({});
+PublishedLastWeek.args = {
+  content: "This is a simple textual note, that was published last week",
+  published: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+};
+
+export const PublishedLastYear = Template.bind({});
+PublishedLastYear.args = {
+  content: "This is a simple textual note, that was published last year",
+  published: new Date(Date.now() - 400 * 24 * 60 * 60 * 1000),
+};

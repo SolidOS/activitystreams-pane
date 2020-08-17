@@ -3,9 +3,11 @@ import { ReactElement } from "react";
 import { createUseStyles } from "react-jss";
 
 import { Note } from "./types";
+import { FormattedDate } from "./FormattedDate";
 
 const useStyles = createUseStyles({
   card: {
+    fontFamily: "sans-serif",
     display: "flex",
     flexWrap: "wrap",
     borderRadius: "4px",
@@ -16,13 +18,20 @@ const useStyles = createUseStyles({
     alignItems: "center",
     transition: "all .25s ease-in-out",
   },
+  content: {
+    fontSize: "larger",
+  },
+  date: {
+    color: "rgb(0, 0, 0, 60%)",
+  },
 });
 
-export const NoteCard = ({ content }: Note): ReactElement => {
+export const NoteCard = ({ content, published }: Note): ReactElement => {
   const classes = useStyles();
   return (
     <div className={classes.card}>
-      <p>{content}</p>
+      <p className={classes.content}>{content}</p>
+      <FormattedDate className={classes.date} value={published} />
     </div>
   );
 };
