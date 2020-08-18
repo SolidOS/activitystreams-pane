@@ -4,7 +4,7 @@ import { createUseStyles } from "react-jss";
 
 import { Note } from "./types";
 import { FormattedDate } from "./FormattedDate";
-import { Attribution } from "./Attribution";
+import { AttributionTag } from "./attribution";
 
 const useStyles = createUseStyles({
   card: {
@@ -35,7 +35,7 @@ export const NoteCard = ({
   const classes = useStyles();
   return (
     <div className={classes.card}>
-      <Attribution to={attributedTo} />
+      <AttributionTag src={attributedTo} />
       <p className={classes.content}>{content}</p>
       <FormattedDate className={classes.date} value={published} />
     </div>
