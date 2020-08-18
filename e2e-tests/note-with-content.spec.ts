@@ -5,16 +5,16 @@ import { DataBrowserContext } from "pane-registry";
 const store = graph();
 
 describe("activitystreams-pane", () => {
-  describe("GIVEN a note", () => {
+  describe("GIVEN a published textual note attributed to a named node", () => {
     const noteTurtle = `
       @prefix : <#> .
       @prefix as: <https://www.w3.org/ns/activitystreams#> .
       @prefix XML: <http://www.w3.org/2001/XMLSchema#>.
 
-
       :it a as:Note;
           as:content "The content of the note" ;
-          as:published  "2020-08-18T21:40:52+0200"^^XML:dateTime .
+          as:published  "2020-08-18T21:40:52+0200"^^XML:dateTime ;
+          as:attributedTo </person#me> .
     `;
 
     beforeEach(() => {
@@ -40,6 +40,10 @@ describe("activitystreams-pane", () => {
             month: "2-digit",
           })
         );
+      });
+
+      it("AND the attribution link is shown", () => {
+        expect(html).toHaveTextContent("https://pod.example/person#me");
       });
     });
   });
