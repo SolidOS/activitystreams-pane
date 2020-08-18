@@ -1,19 +1,21 @@
 import { default as pane } from "../src";
-import { graph, sym } from "rdflib";
+import { graph, parse, sym } from "rdflib";
 import { DataBrowserContext } from "pane-registry";
-import { ns } from "solid-ui";
 
 const store = graph();
 
 describe("activitystreams-pane", () => {
   describe("note with content", () => {
+    const noteTurtle = `
+      @prefix : <#> .
+      @prefix as: <https://www.w3.org/ns/activitystreams#> .
+
+      :it a as:Note;
+          as:content "The content of the note" .
+    `;
+
     beforeEach(() => {
-      store.add(
-        sym("https://pod.example/note#it"),
-        ns.as("content"),
-        "The content of the note",
-        sym("https://pod.example/note")
-      );
+      parse(noteTurtle, store, "https://pod.example/note");
     });
 
     it("should render note content", () => {
