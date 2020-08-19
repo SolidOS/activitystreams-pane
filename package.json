@@ -8,6 +8,7 @@
   },
   "main": "lib/index.js",
   "scripts": {
+    "start": "webpack-dev-server --config webpack.dev.config.js",
     "build": "tsc",
     "test": "jest",
     "lint": "eslint ./src",
@@ -69,6 +70,9 @@
     "react-dom": "^16.13.1",
     "react-is": "^16.13.1",
     "solid-auth-cli": "^1.0.14",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }
