@@ -1,8 +1,17 @@
 import { graph, sym } from "rdflib";
-import { readFromStore } from "./data";
+import { read } from "./note";
 import { ns } from "solid-ui";
+import { readAttribution } from "./attribution";
+
+jest.mock("./attribution");
 
 describe("read note from store", () => {
+  beforeEach(() => {
+    (readAttribution as jest.Mock).mockReturnValue({
+      discriminator: "NoAttribution",
+    });
+  });
+
   describe("GIVEN an empty store", () => {
     let store;
     beforeEach(() => {
@@ -11,7 +20,7 @@ describe("read note from store", () => {
     describe("WHEN trying to read a note", () => {
       let note;
       beforeEach(() => {
-        note = readFromStore(sym("https://pod.example/note#it"), store);
+        note = read(sym("https://pod.example/note#it"), store);
       });
       it("THEN it is null", () => {
         expect(note).toBeNull();
@@ -33,7 +42,7 @@ describe("read note from store", () => {
     describe("WHEN trying to read a note", () => {
       let note;
       beforeEach(() => {
-        note = readFromStore(sym("https://pod.example/note#it"), store);
+        note = read(sym("https://pod.example/note#it"), store);
       });
       it("THEN the note has a content", () => {
         expect(note).not.toBeNull();
@@ -72,7 +81,7 @@ describe("read note from store", () => {
     describe("WHEN trying to read a note", () => {
       let note;
       beforeEach(() => {
-        note = readFromStore(sym("https://pod.example/note#it"), store);
+        note = read(sym("https://pod.example/note#it"), store);
       });
       it("THEN the note contains the date it was published", () => {
         expect(note).not.toBeNull();
@@ -88,7 +97,7 @@ describe("read note from store", () => {
     });
   });
 
-  describe("GIVEN a store containing a note that is attributed to a named node", () => {
+  describe("GIVEN a store containing a note that is attributed", () => {
     let store;
     beforeEach(() => {
       store = graph();
@@ -98,68 +107,19 @@ describe("read note from store", () => {
         "The content of the note",
         sym("https://pod.example/note")
       );
-      store.add(
-        sym("https://pod.example/note#it"),
-        ns.as("attributedTo"),
-        sym("https://pod.example/person#me"),
-        sym("https://pod.example/note")
-      );
+      (readAttribution as jest.Mock).mockReturnValue({
+        discriminator: "FakeAttribution",
+      });
     });
     describe("WHEN trying to read a note", () => {
       let note;
       beforeEach(() => {
-        note = readFromStore(sym("https://pod.example/note#it"), store);
+        note = read(sym("https://pod.example/note#it"), store);
       });
       it("THEN the note links to the attribution", () => {
         expect(note).not.toBeNull();
         expect(note.attributedTo).toEqual({
-          discriminator: "LinkAttribution",
-          uri: "https://pod.example/person#me",
-        });
-      });
-    });
-  });
-
-  describe("GIVEN a store containing a note that is attributed to Jane Doe", () => {
-    let store;
-    beforeEach(() => {
-      store = graph();
-      store.add(
-        sym("https://pod.example/note#it"),
-        ns.as("content"),
-        "The content of the note",
-        sym("https://pod.example/note")
-      );
-      store.add(
-        sym("https://pod.example/note#it"),
-        ns.as("attributedTo"),
-        sym("https://pod.example/person#me"),
-        sym("https://pod.example/note")
-      );
-      store.add(
-        sym("https://pod.example/person#me"),
-        ns.rdf("type"),
-        ns.as("Person"),
-        sym("https://pod.example/person")
-      );
-      store.add(
-        sym("https://pod.example/person#me"),
-        ns.as("name"),
-        "Jane Doe",
-        sym("https://pod.example/person")
-      );
-    });
-    describe("WHEN trying to read a note", () => {
-      let note;
-      beforeEach(() => {
-        note = readFromStore(sym("https://pod.example/note#it"), store);
-      });
-      it("THEN the note attributes to the person by name and WebID", () => {
-        expect(note).not.toBeNull();
-        expect(note.attributedTo).toEqual({
-          discriminator: "PersonAttribution",
-          webId: "https://pod.example/person#me",
-          name: "Jane Doe",
+          discriminator: "FakeAttribution",
         });
       });
     });

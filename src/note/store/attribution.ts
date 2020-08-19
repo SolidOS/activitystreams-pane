@@ -1,12 +1,12 @@
+import { ns } from "solid-ui";
 import { NamedNode, Node } from "rdflib";
 import { LiveStore } from "pane-registry";
-import { ns } from "solid-ui";
-import { Attribution, Note } from "./types";
+import { Attribution } from "../types";
 
-function readAttribution(
+export function readAttribution(
   subject: NamedNode,
   store: LiveStore
-): Attribution | null {
+): Attribution {
   const attributedTo: Node = store.any(subject, ns.as("attributedTo"));
   if (attributedTo instanceof NamedNode) {
     const types = store.findTypeURIs(attributedTo);
@@ -26,24 +26,5 @@ function readAttribution(
   }
   return {
     discriminator: "NoAttribution",
-  };
-}
-
-export function readFromStore(
-  subject: NamedNode,
-  store: LiveStore
-): Note | null {
-  const content = store.any(subject, ns.as("content"));
-  const published = store.any(subject, ns.as("published"));
-  const attributedTo = readAttribution(subject, store);
-
-  if (!content) {
-    return null;
-  }
-
-  return {
-    content: content.value,
-    published: published && new Date(published.value),
-    attributedTo,
   };
 }
