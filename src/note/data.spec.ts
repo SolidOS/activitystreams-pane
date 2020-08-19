@@ -43,6 +43,12 @@ describe("read note from store", () => {
         expect(note).not.toBeNull();
         expect(note.published).toBeNull();
       });
+      it("AND it has no attribution", () => {
+        expect(note).not.toBeNull();
+        expect(note.attributedTo).toEqual({
+          discriminator: "NoAttribution",
+        });
+      });
     });
   });
 
@@ -72,10 +78,17 @@ describe("read note from store", () => {
         expect(note).not.toBeNull();
         expect(note.published).toEqual(new Date("2020-01-13T11:56:28Z"));
       });
+
+      it("BUT it has no attribution", () => {
+        expect(note).not.toBeNull();
+        expect(note.attributedTo).toEqual({
+          discriminator: "NoAttribution",
+        });
+      });
     });
   });
 
-  describe("GIVEN a store containing a note that is attributed to someone", () => {
+  describe("GIVEN a store containing a note that is attributed to a named node", () => {
     let store;
     beforeEach(() => {
       store = graph();
@@ -99,7 +112,55 @@ describe("read note from store", () => {
       });
       it("THEN the note links to the attribution", () => {
         expect(note).not.toBeNull();
-        expect(note.attributedTo).toEqual(sym("https://pod.example/person#me"));
+        expect(note.attributedTo).toEqual({
+          discriminator: "LinkAttribution",
+          uri: "https://pod.example/person#me",
+        });
+      });
+    });
+  });
+
+  describe("GIVEN a store containing a note that is attributed to Jane Doe", () => {
+    let store;
+    beforeEach(() => {
+      store = graph();
+      store.add(
+        sym("https://pod.example/note#it"),
+        ns.as("content"),
+        "The content of the note",
+        sym("https://pod.example/note")
+      );
+      store.add(
+        sym("https://pod.example/note#it"),
+        ns.as("attributedTo"),
+        sym("https://pod.example/person#me"),
+        sym("https://pod.example/note")
+      );
+      store.add(
+        sym("https://pod.example/person#me"),
+        ns.rdf("type"),
+        ns.as("Person"),
+        sym("https://pod.example/person")
+      );
+      store.add(
+        sym("https://pod.example/person#me"),
+        ns.as("name"),
+        "Jane Doe",
+        sym("https://pod.example/person")
+      );
+    });
+    describe("WHEN trying to read a note", () => {
+      let note;
+      beforeEach(() => {
+        note = readFromStore(sym("https://pod.example/note#it"), store);
+      });
+      it("THEN the note attributes to the person by name and WebID", () => {
+        expect(note).not.toBeNull();
+        expect(note.attributedTo).toEqual({
+          discriminator: "PersonAttribution",
+          webId: "https://pod.example/person#me",
+          name: "Jane Doe",
+        });
       });
     });
   });

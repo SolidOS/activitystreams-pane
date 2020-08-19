@@ -1,7 +1,33 @@
-import { NamedNode } from "rdflib";
+import { NamedNode, Node } from "rdflib";
 import { LiveStore } from "pane-registry";
 import { ns } from "solid-ui";
-import { Note } from "./types";
+import { Attribution, Note } from "./types";
+
+function readAttribution(
+  subject: NamedNode,
+  store: LiveStore
+): Attribution | null {
+  const attributedTo: Node = store.any(subject, ns.as("attributedTo"));
+  if (attributedTo instanceof NamedNode) {
+    const types = store.findTypeURIs(attributedTo);
+    if (types[ns.as("Person").uri]) {
+      const name: string = store.anyValue(attributedTo, ns.as("name")) || "";
+      return {
+        discriminator: "PersonAttribution",
+        webId: attributedTo.uri,
+        name,
+      };
+    } else {
+      return {
+        discriminator: "LinkAttribution",
+        uri: attributedTo.uri,
+      };
+    }
+  }
+  return {
+    discriminator: "NoAttribution",
+  };
+}
 
 export function readFromStore(
   subject: NamedNode,
@@ -9,7 +35,7 @@ export function readFromStore(
 ): Note | null {
   const content = store.any(subject, ns.as("content"));
   const published = store.any(subject, ns.as("published"));
-  const attributedTo = store.any(subject, ns.as("attributedTo"));
+  const attributedTo = readAttribution(subject, store);
 
   if (!content) {
     return null;

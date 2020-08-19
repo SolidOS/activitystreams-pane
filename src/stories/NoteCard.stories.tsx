@@ -1,9 +1,8 @@
 import * as React from "react";
 
-import { NoteCard, Note } from "../note";
+import { Note, NoteCard } from "../note";
 
-import { Story, Meta } from "@storybook/react";
-import { sym } from "rdflib";
+import { Meta, Story } from "@storybook/react";
 
 export default {
   title: "NoteCard",
@@ -14,37 +13,49 @@ const Template: Story = (args: Note) => <NoteCard {...args} />;
 
 export const TextOnly = Template.bind({});
 TextOnly.args = {
+  attributedTo: { discriminator: "NoAttribution" },
   content:
     "This is a simple note, just showing some textual content. No author, no date, nothing but the text.",
 };
 
 export const PublishedJustNow = Template.bind({});
 PublishedJustNow.args = {
+  attributedTo: { discriminator: "NoAttribution" },
   content: "This is a simple textual note, that was published just now",
   published: new Date(),
 };
 
 export const PublishedLastWeek = Template.bind({});
 PublishedLastWeek.args = {
+  attributedTo: { discriminator: "NoAttribution" },
   content: "This is a simple textual note, that was published last week",
   published: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
 };
 
 export const PublishedLastYear = Template.bind({});
 PublishedLastYear.args = {
+  attributedTo: { discriminator: "NoAttribution" },
   content: "This is a simple textual note, that was published last year",
   published: new Date(Date.now() - 400 * 24 * 60 * 60 * 1000),
 };
 
-export const AttributedTo = Template.bind({});
-AttributedTo.args = {
+export const AttributedToLink = Template.bind({});
+AttributedToLink.args = {
+  attributedTo: {
+    discriminator: "LinkAttribution",
+    uri: "https://pod.example/person#me",
+  },
   content: "This is a simple textual note, attributed to a person",
-  attributedTo: sym("https://pod.example/person#me"),
+  published: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
 };
 
-export const PublishedAndAttributed = Template.bind({});
-PublishedAndAttributed.args = {
+export const AttributedToPerson = Template.bind({});
+AttributedToPerson.args = {
+  attributedTo: {
+    discriminator: "PersonAttribution",
+    webId: "https://pod.example/person#me",
+    name: "Jane Doe",
+  },
   content: "This is a simple textual note, attributed to a person",
-  attributedTo: sym("https://pod.example/person#me"),
   published: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
 };

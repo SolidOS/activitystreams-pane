@@ -1,7 +1,34 @@
-import { Node } from "rdflib";
-
 export interface Note {
   content: string;
   published?: Date;
-  attributedTo?: Node;
+  attributedTo: Attribution;
+}
+
+export type Attribution = NoAttribution | LinkAttribution | PersonAttribution;
+
+export interface NoAttribution {
+  discriminator: "NoAttribution";
+}
+
+export interface LinkAttribution {
+  discriminator: "LinkAttribution";
+  uri: string;
+}
+
+export function isLinkAttribution(
+  attribution: Attribution
+): attribution is LinkAttribution {
+  return attribution.discriminator === "LinkAttribution";
+}
+
+export interface PersonAttribution {
+  discriminator: "PersonAttribution";
+  webId: string;
+  name: string;
+}
+
+export function isPersonAttribution(
+  attribution: Attribution
+): attribution is PersonAttribution {
+  return attribution.discriminator === "PersonAttribution";
 }
