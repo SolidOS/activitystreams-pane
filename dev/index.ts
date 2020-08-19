@@ -1,5 +1,5 @@
 import { sym } from "rdflib";
-import { default as pane } from "..";
+import { default as pane } from "../src";
 import { context, fetcher } from "./context";
 
 const noteUri =

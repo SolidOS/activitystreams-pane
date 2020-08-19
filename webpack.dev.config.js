@@ -6,12 +6,12 @@ console.log("resolve path", path.resolve(__dirname, "./src/"));
 module.exports = [
   {
     mode: "development",
-    entry: ["./src/_dev/index.ts"],
+    entry: ["./dev/index.ts"],
     output: {
-      path: path.resolve(__dirname, "dev"),
+      path: path.resolve(__dirname, "dist"),
       filename: "dev.bundle.js",
     },
-    plugins: [new HtmlWebpackPlugin({ template: "./src/_dev/index.html" })],
+    plugins: [new HtmlWebpackPlugin({ template: "./dev/index.html" })],
     module: {
       rules: [
         {
@@ -34,7 +34,7 @@ module.exports = [
       "@trust/webcrypto": "crypto",
     },
     devServer: {
-      contentBase: "./dev",
+      contentBase: "./dist",
     },
     devtool: "source-map",
   },
