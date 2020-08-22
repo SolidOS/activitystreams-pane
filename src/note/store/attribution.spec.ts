@@ -139,4 +139,45 @@ describe("read note attribution", () => {
       });
     });
   });
+
+  describe("GIVEN a note attributed to vcard:Individual with fn 'Jane Doe'", () => {
+    let store;
+    beforeEach(() => {
+      store = graph();
+      store.add(
+        sym("https://pod.example/note#it"),
+        ns.as("attributedTo"),
+        sym("https://pod.example/person#me"),
+        sym("https://pod.example/note")
+      );
+      store.add(
+        sym("https://pod.example/person#me"),
+        ns.rdf("type"),
+        ns.vcard("Individual"),
+        sym("https://pod.example/person")
+      );
+      store.add(
+        sym("https://pod.example/person#me"),
+        ns.vcard("fn"),
+        "Jane Doe",
+        sym("https://pod.example/person")
+      );
+    });
+    describe("WHEN trying to read a note", () => {
+      let attribution;
+      beforeEach(() => {
+        attribution = readAttribution(
+          sym("https://pod.example/note#it"),
+          store
+        );
+      });
+      it("THEN the note attributes to the person by name and WebID", () => {
+        expect(attribution).toEqual({
+          discriminator: "PersonAttribution",
+          webId: "https://pod.example/person#me",
+          name: "Jane Doe",
+        });
+      });
+    });
+  });
 });

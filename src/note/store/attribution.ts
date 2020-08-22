@@ -17,7 +17,8 @@ export function readAttribution(
 function containsPersonType(types): boolean {
   const as = ns.as("Person").uri;
   const foaf = ns.foaf("Person").uri;
-  return types[as] || types[foaf];
+  const vcard = ns.vcard("Individual").uri;
+  return types[as] || types[foaf] || types[vcard];
 }
 
 /**
@@ -47,6 +48,7 @@ function readPerson(
   const name: string =
     store.anyValue(attributedTo, ns.as("name")) ||
     store.anyValue(attributedTo, ns.foaf("name")) ||
+    store.anyValue(attributedTo, ns.vcard("fn")) ||
     "";
   return {
     discriminator: "PersonAttribution",
