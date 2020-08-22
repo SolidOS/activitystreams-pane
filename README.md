@@ -4,7 +4,7 @@ A visualization of [Activity Streams](https://www.w3.org/TR/activitystreams-voca
 
 ## Demo
 
-📗 [Storybook](https://solid.github.io/activitystreams-pane/docs/)
+📗 [Storybook](https://solid.github.io/activitystreams-pane/)
 
 ## Currently supported types
 
