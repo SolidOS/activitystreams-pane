@@ -18,7 +18,8 @@ function containsPersonType(types): boolean {
   const as = ns.as("Person").uri;
   const foaf = ns.foaf("Person").uri;
   const vcard = ns.vcard("Individual").uri;
-  return types[as] || types[foaf] || types[vcard];
+  const schema = ns.schema("Person").uri;
+  return types[as] || types[foaf] || types[vcard] || types[schema];
 }
 
 /**
@@ -49,6 +50,7 @@ function readPerson(
     store.anyValue(attributedTo, ns.as("name")) ||
     store.anyValue(attributedTo, ns.foaf("name")) ||
     store.anyValue(attributedTo, ns.vcard("fn")) ||
+    store.anyValue(attributedTo, ns.schema("name")) ||
     "";
   return {
     discriminator: "PersonAttribution",
