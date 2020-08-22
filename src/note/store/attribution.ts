@@ -1,7 +1,7 @@
 import { ns } from "solid-ui";
 import { NamedNode, Node, sym } from "rdflib";
 import { LiveStore } from "pane-registry";
-import { Attribution, LinkAttribution } from "../types";
+import { Attribution, LinkAttribution, PersonAttribution } from "../types";
 
 /**
  * Constructs an attribution object for the node the subject is attributed to.
@@ -14,19 +14,20 @@ export function readAttribution(
   return read(attributedTo, store);
 }
 
+function containsPersonType(types): boolean {
+  const as = ns.as("Person").uri;
+  const foaf = ns.foaf("Person").uri;
+  return types[as] || types[foaf];
+}
+
 /**
  * Constructs an attribution object for the given node with data read from the store
  */
 function read(attributedTo: Node, store: LiveStore): Attribution {
   if (attributedTo instanceof NamedNode) {
     const types = store.findTypeURIs(attributedTo);
-    if (types[ns.as("Person").uri]) {
-      const name: string = store.anyValue(attributedTo, ns.as("name")) || "";
-      return {
-        discriminator: "PersonAttribution",
-        webId: attributedTo.uri,
-        name,
-      };
+    if (containsPersonType(types)) {
+      return readPerson(store, attributedTo);
     } else {
       return {
         discriminator: "LinkAttribution",
@@ -36,6 +37,21 @@ function read(attributedTo: Node, store: LiveStore): Attribution {
   }
   return {
     discriminator: "NoAttribution",
+  };
+}
+
+function readPerson(
+  store: LiveStore,
+  attributedTo: NamedNode
+): PersonAttribution {
+  const name: string =
+    store.anyValue(attributedTo, ns.as("name")) ||
+    store.anyValue(attributedTo, ns.foaf("name")) ||
+    "";
+  return {
+    discriminator: "PersonAttribution",
+    webId: attributedTo.uri,
+    name,
   };
 }
 
