@@ -4,6 +4,7 @@ import { createUseStyles } from "react-jss";
 
 import { Note } from "./types";
 import { FormattedDate } from "./FormattedDate";
+import { AttributionTag } from "./AttributionTag";
 
 const useStyles = createUseStyles({
   card: {
@@ -15,7 +16,6 @@ const useStyles = createUseStyles({
     justifyContent: "center",
     padding: "1em",
     boxShadow: "0 1px 5px rgba(0,0,0,0.2)",
-    alignItems: "center",
     transition: "all .25s ease-in-out",
   },
   content: {
@@ -24,12 +24,29 @@ const useStyles = createUseStyles({
   date: {
     color: "rgb(0, 0, 0, 60%)",
   },
+  attribution: {
+    fontWeight: "bold",
+    "& a": {
+      color: "black",
+      textDecoration: "none",
+    },
+    "& a:hover": {
+      textDecoration: "underline",
+    },
+  },
 });
 
-export const NoteCard = ({ content, published }: Note): ReactElement => {
+export const NoteCard = ({
+  content,
+  published,
+  attributedTo,
+}: Note): ReactElement => {
   const classes = useStyles();
   return (
     <div className={classes.card}>
+      <div className={classes.attribution}>
+        <AttributionTag to={attributedTo} />
+      </div>
       <p className={classes.content}>{content}</p>
       <FormattedDate className={classes.date} value={published} />
     </div>

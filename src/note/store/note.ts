@@ -1,14 +1,13 @@
 import { NamedNode } from "rdflib";
 import { LiveStore } from "pane-registry";
 import { ns } from "solid-ui";
-import { Note } from "./types";
+import { Note } from "../types";
+import { readAttribution } from "./attribution";
 
-export function readFromStore(
-  subject: NamedNode,
-  store: LiveStore
-): Note | null {
+export function read(subject: NamedNode, store: LiveStore): Note | null {
   const content = store.any(subject, ns.as("content"));
   const published = store.any(subject, ns.as("published"));
+  const attributedTo = readAttribution(subject, store);
 
   if (!content) {
     return null;
@@ -17,5 +16,6 @@ export function readFromStore(
   return {
     content: content.value,
     published: published && new Date(published.value),
+    attributedTo,
   };
 }
