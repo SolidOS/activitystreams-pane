@@ -25,6 +25,8 @@ const useStyles = createUseStyles({
     color: "rgb(0, 0, 0, 60%)",
   },
   attribution: {
+    display: "flex",
+    alignItems: "center",
     fontWeight: "bold",
     "& a": {
       color: "black",
@@ -32,6 +34,11 @@ const useStyles = createUseStyles({
     },
     "& a:hover": {
       textDecoration: "underline",
+    },
+    "& img": {
+      marginRight: 5,
+      width: 47,
+      borderRadius: 5,
     },
   },
 });
