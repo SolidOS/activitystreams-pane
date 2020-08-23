@@ -52,10 +52,13 @@ function readPerson(
     store.anyValue(attributedTo, ns.vcard("fn")) ||
     store.anyValue(attributedTo, ns.schema("name")) ||
     "";
+  const image: string | void = store.anyValue(attributedTo, ns.as("image"));
+  const imageSrc = (image && store.anyValue(sym(image), ns.as("url"))) || null;
   return {
     discriminator: "PersonAttribution",
     webId: attributedTo.uri,
     name,
+    imageSrc,
   };
 }
 

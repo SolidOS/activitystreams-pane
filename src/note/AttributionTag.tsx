@@ -24,10 +24,11 @@ export const AttributionTag = ({ to }: Props): ReactElement => {
 const PersonAttributionTag = ({
   webId,
   name,
+  imageSrc,
 }: PersonAttribution): ReactElement => {
   return (
     <>
-      <img alt={name} src="https://i.pravatar.cc/300" />
+      {imageSrc && <img height="47" width="47" alt={name} src={imageSrc} />}
       <a href={webId}>{name}</a>
     </>
   );
