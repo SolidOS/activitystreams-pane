@@ -1,0 +1,10 @@
+@prefix :       <#> .
+@prefix XML: <http://www.w3.org/2001/XMLSchema#> .
+@prefix as: <https://www.w3.org/ns/activitystreams#> .
+@prefix pro: </profile/actor#> .
+
+:it
+    a as:Note ;
+    as:attributedTo pro:me ;
+    as:content "This is an ActivityStreams Note attributed to an Actor" ;
+    as:published "2020-08-23T14:26:44+0200"^^XML:dateTime .

@@ -52,11 +52,28 @@ function readPerson(
     store.anyValue(attributedTo, ns.vcard("fn")) ||
     store.anyValue(attributedTo, ns.schema("name")) ||
     "";
+  const imageSrc = readImageSrc(store, attributedTo);
   return {
     discriminator: "PersonAttribution",
     webId: attributedTo.uri,
     name,
+    imageSrc,
   };
+}
+
+function readImageSrc(
+  store: LiveStore,
+  attributedTo: NamedNode
+): string | undefined {
+  const image: string | void = store.anyValue(attributedTo, ns.as("image"));
+  if (image) {
+    return store.anyValue(sym(image), ns.as("url")) || undefined;
+  }
+  return (
+    store.anyValue(attributedTo, ns.foaf("img")) ||
+    store.anyValue(attributedTo, ns.vcard("hasPhoto")) ||
+    undefined
+  );
 }
 
 /**

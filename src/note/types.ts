@@ -25,6 +25,7 @@ export interface PersonAttribution {
   discriminator: "PersonAttribution";
   webId: string;
   name: string;
+  imageSrc?: string;
 }
 
 export function isPersonAttribution(

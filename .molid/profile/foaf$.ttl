@@ -1,0 +1,7 @@
+@prefix :      <#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+
+:me
+    a foaf:Person ;
+    foaf:name "A. N. Other" ;
+    foaf:img <https://i.pravatar.cc/300> .

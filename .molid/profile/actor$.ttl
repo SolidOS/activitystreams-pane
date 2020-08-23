@@ -1,0 +1,11 @@
+@prefix :      <#> .
+@prefix as: <https://www.w3.org/ns/activitystreams#> .
+
+:me
+    a as:Person ;
+    as:name "Activity Streams Actor" ;
+    as:image :image .
+
+:image
+    a as:Image;
+    as:url <https://i.pravatar.cc/300> .

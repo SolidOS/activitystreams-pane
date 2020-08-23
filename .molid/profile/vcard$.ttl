@@ -1,0 +1,7 @@
+@prefix :      <#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
+:me
+    a vcard:Individual ;
+    vcard:fn "A. N. Other" ;
+    vcard:hasPhoto <https://i.pravatar.cc/300> .

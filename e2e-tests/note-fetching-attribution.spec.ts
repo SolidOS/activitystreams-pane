@@ -2,7 +2,7 @@ import { fetcher, graph, parse, sym } from "rdflib";
 import { default as pane } from "../src";
 import { DataBrowserContext } from "pane-registry";
 
-import { getByText, waitFor } from "@testing-library/react";
+import { getByText, getByAltText, waitFor } from "@testing-library/react";
 import { givenMolid } from "molid/lib/molid-jest";
 
 describe("note with fetching attribution", () => {
@@ -45,6 +45,18 @@ describe("note with fetching attribution", () => {
           await waitFor(
             () => {
               expect(getByText(html, "A. N. Other")).toBeInTheDOM(html);
+            },
+            { container: html }
+          );
+        });
+
+        it("AND the person's picture is shown eventually", async () => {
+          await waitFor(
+            () => {
+              expect(getByAltText(html, "A. N. Other")).toHaveAttribute(
+                "src",
+                "https://i.pravatar.cc/300"
+              );
             },
             { container: html }
           );

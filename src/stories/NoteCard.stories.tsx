@@ -55,6 +55,7 @@ AttributedToPerson.args = {
     discriminator: "PersonAttribution",
     webId: "https://pod.example/person#me",
     name: "Jane Doe",
+    imageSrc: "https://i.pravatar.cc/300",
   },
   content: "This is a simple textual note, attributed to a person",
   published: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),

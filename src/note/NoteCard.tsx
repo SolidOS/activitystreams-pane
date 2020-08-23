@@ -17,6 +17,7 @@ const useStyles = createUseStyles({
     padding: "1em",
     boxShadow: "0 1px 5px rgba(0,0,0,0.2)",
     transition: "all .25s ease-in-out",
+    maxWidth: 632,
   },
   content: {
     fontSize: "larger",
@@ -25,6 +26,8 @@ const useStyles = createUseStyles({
     color: "rgb(0, 0, 0, 60%)",
   },
   attribution: {
+    display: "flex",
+    alignItems: "center",
     fontWeight: "bold",
     "& a": {
       color: "black",
@@ -32,6 +35,11 @@ const useStyles = createUseStyles({
     },
     "& a:hover": {
       textDecoration: "underline",
+    },
+    "& img": {
+      marginRight: 5,
+      width: 47,
+      borderRadius: 5,
     },
   },
 });
