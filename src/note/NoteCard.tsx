@@ -17,6 +17,7 @@ const useStyles = createUseStyles({
     padding: "1em",
     boxShadow: "0 1px 5px rgba(0,0,0,0.2)",
     transition: "all .25s ease-in-out",
+    maxWidth: 632,
   },
   content: {
     fontSize: "larger",
