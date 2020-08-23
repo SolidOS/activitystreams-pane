@@ -69,7 +69,11 @@ function readImageSrc(
   if (image) {
     return store.anyValue(sym(image), ns.as("url")) || null;
   }
-  return store.anyValue(attributedTo, ns.foaf("img")) || null;
+  return (
+    store.anyValue(attributedTo, ns.foaf("img")) ||
+    store.anyValue(attributedTo, ns.vcard("hasPhoto")) ||
+    null
+  );
 }
 
 /**
