@@ -64,15 +64,15 @@ function readPerson(
 function readImageSrc(
   store: LiveStore,
   attributedTo: NamedNode
-): string | null {
+): string | undefined {
   const image: string | void = store.anyValue(attributedTo, ns.as("image"));
   if (image) {
-    return store.anyValue(sym(image), ns.as("url")) || null;
+    return store.anyValue(sym(image), ns.as("url")) || undefined;
   }
   return (
     store.anyValue(attributedTo, ns.foaf("img")) ||
     store.anyValue(attributedTo, ns.vcard("hasPhoto")) ||
-    null
+    undefined
   );
 }
 
