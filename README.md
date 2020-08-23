@@ -44,7 +44,7 @@ Start a webpack dev server:
 npm start
 ```
 
-Visit `http://localhost:8080/` to render the pane. Adjust ´const noteUri` in `./dev/index.ts` to show a
+Visit `http://localhost:8080/` to render the pane. Adjust `const noteUri` in `./dev/index.ts` to show a
  different resource.
  
 ### Build
