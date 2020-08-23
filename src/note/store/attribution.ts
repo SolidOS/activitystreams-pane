@@ -52,14 +52,24 @@ function readPerson(
     store.anyValue(attributedTo, ns.vcard("fn")) ||
     store.anyValue(attributedTo, ns.schema("name")) ||
     "";
-  const image: string | void = store.anyValue(attributedTo, ns.as("image"));
-  const imageSrc = (image && store.anyValue(sym(image), ns.as("url"))) || null;
+  const imageSrc = readImageSrc(store, attributedTo);
   return {
     discriminator: "PersonAttribution",
     webId: attributedTo.uri,
     name,
     imageSrc,
   };
+}
+
+function readImageSrc(
+  store: LiveStore,
+  attributedTo: NamedNode
+): string | null {
+  const image: string | void = store.anyValue(attributedTo, ns.as("image"));
+  if (image) {
+    return store.anyValue(sym(image), ns.as("url")) || null;
+  }
+  return store.anyValue(attributedTo, ns.foaf("img")) || null;
 }
 
 /**
