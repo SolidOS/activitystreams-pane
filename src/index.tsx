@@ -1,6 +1,6 @@
 import * as React from "react";
 import { icons, ns } from "solid-ui";
-import { NamedNode } from "rdflib";
+import { NamedNode, Store } from "rdflib";
 import { DataBrowserContext } from "pane-registry";
 import { createElement } from "./dom";
 import { Pane } from "./Pane";
@@ -16,7 +16,7 @@ const thisPane = {
     subject: NamedNode,
     context: DataBrowserContext
   ): string | null {
-    const t = context.session.store.findTypeURIs(subject);
+    const t = (context.session.store as Store).findTypeURIs(subject);
     if (t[ns.as("Note").uri]) {
       return "Note";
     }
