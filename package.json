@@ -10,7 +10,7 @@
   "scripts": {
     "start": "molid & webpack-dev-server --config webpack.dev.config.js",
     "build": "tsc",
-    "test": "jest",
+    "test": "jest --runInBand",
     "lint": "eslint ./src",
     "prepublishOnly": "npm run lint && npm run test && npm run build",
     "storybook": "start-storybook -p 6006",
@@ -34,10 +34,11 @@
   },
   "license": "MIT",
   "dependencies": {
+    "nan": "^2.15.0",
     "pane-registry": "^2.3.2",
-    "rdflib": "^2.1.1",
+    "rdflib": "^2.2.7",
     "react-jss": "^10.4.0",
-    "solid-ui": "^2.3.2",
+    "solid-ui": "^2.4.9-beta",
     "timeago.js": "^4.0.2"
   },
   "peerDependencies": {
