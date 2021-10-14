@@ -38,7 +38,7 @@
     "pane-registry": "^2.4.2",
     "rdflib": "^2.2.7",
     "react-jss": "^10.8.0",
-    "solid-ui": "^2.4.9-beta",
+    "solid-ui": "^2.4.9",
     "timeago.js": "^4.0.2"
   },
   "peerDependencies": {
@@ -50,10 +50,10 @@
     "@babel/preset-env": "^7.15.8",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.15.0",
-    "@storybook/addon-actions": "^6.3.11",
-    "@storybook/addon-essentials": "^6.3.11",
-    "@storybook/addon-links": "^6.3.11",
-    "@storybook/react": "^6.3.11",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/react": "^6.3.12",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
