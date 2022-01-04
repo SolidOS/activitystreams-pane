@@ -1,5 +1,5 @@
-import { NamedNode, Store as LiveStore } from "rdflib";
-// FIXME: import { LiveStore } from "pane-registry";
+import { NamedNode } from "rdflib";
+import { LiveStore } from "solid-logic";
 import { ns } from "solid-ui";
 import { Note } from "../types";
 import { readAttribution } from "./attribution";

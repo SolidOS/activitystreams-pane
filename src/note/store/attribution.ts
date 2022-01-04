@@ -1,6 +1,6 @@
 import { ns } from "solid-ui";
-import { NamedNode, Node, sym, Store as LiveStore } from "rdflib";
-// FIXME: import { LiveStore } from "pane-registry";
+import { NamedNode, Node, sym } from "rdflib";
+import { LiveStore } from "solid-logic";
 import { Attribution, LinkAttribution, PersonAttribution } from "../types";
 
 /**
