@@ -1,6 +1,5 @@
 import { read } from "./store/note";
-import { NamedNode } from "rdflib";
-import { LiveStore } from "solid-logic";
+import { NamedNode, LiveStore } from "rdflib";
 import { isLinkAttribution, Note } from "./types";
 import { useEffect, useState } from "react";
 import { fetchAttribution } from "./store/attribution";

@@ -1,6 +1,5 @@
 import { ns } from "solid-ui";
-import { NamedNode, Node, sym } from "rdflib";
-import { LiveStore } from "solid-logic";
+import { NamedNode, Node, sym, LiveStore } from "rdflib";
 import { Attribution, LinkAttribution, PersonAttribution } from "../types";
 
 /**
