@@ -20,7 +20,7 @@ describe("read note from store", () => {
     describe("WHEN trying to read a note", () => {
       let note;
       beforeEach(() => {
-        note = read(sym("https://pod.example/note#it"), store);
+        note = read(sym("https://pod.example/note#it"),  store);
       });
       it("THEN it is null", () => {
         expect(note).toBeNull();

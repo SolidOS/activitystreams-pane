@@ -1,5 +1,5 @@
 import { DataBrowserContext, PaneRegistry } from "pane-registry";
-import { store } from "solid-ui";
+import { store } from "solid-logic";
 
 export const context: DataBrowserContext = {
   session: {
