@@ -1,5 +1,4 @@
-import { NamedNode } from "rdflib";
-import { LiveStore } from "solid-logic";
+import { NamedNode, LiveStore } from "rdflib";
 import { ns } from "solid-ui";
 import { Note } from "../types";
 import { readAttribution } from "./attribution";
