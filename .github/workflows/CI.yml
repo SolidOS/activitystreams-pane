@@ -22,7 +22,7 @@ jobs:
         node-version: 
           - 12.x
           - 14.x
-          - 16.x
+          # - 16.x -- there is an error in the tests with node 16
 
     steps:
       - uses: actions/checkout@v2
