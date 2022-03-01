@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react-hooks";
 import { useNote } from "./useNote";
 import { sym } from "rdflib";
-import { store } from "solid-ui";
+import { store } from "solid-logic";
 import { read } from "./store/note";
 import { Attribution, Note } from "./types";
 import { fetchAttribution } from "./store/attribution";
