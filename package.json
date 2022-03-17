@@ -8,9 +8,9 @@
   },
   "main": "lib/index.js",
   "scripts": {
-    "start": "molid & webpack-dev-server --config webpack.dev.config.js",
+    "start": "molid & webpack serve --config webpack.dev.config.js",
     "build": "tsc",
-    "clean": "rm -rf lib storybook-static",
+    "clean": "rm -rf lib storybook-static dist",
     "test": "jest ./src",
     "test:e2e": "jest ./e2e-tests --runInBand --forceExit",
     "lint": "eslint ./src",
@@ -68,12 +68,15 @@
     "@types/react-dom": "^17.0.11",
     "@typescript-eslint/eslint-plugin": "^5.3.0",
     "@typescript-eslint/parser": "^5.3.0",
+    "@webpack-cli/serve": "^0.2.0",
     "autoprefixer": "^10.4.2",
     "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",
+    "command-line-args": "^5.2.1",
     "core-js": "^3.19.1",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.26.1",
+    "html-webpack-plugin": "^4.5.2",
     "jest": "^27.3.1",
     "molid": "^0.3.0",
     "postcss-flexbugs-fixes": "^5.0.2",
@@ -86,7 +89,7 @@
     "typescript": "^4.6.2",
     "uuid": "^8.3.2",
     "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^4.4.0"
+    "webpack-cli": "^4.9.0",
+    "webpack-dev-server": "^4.0.0"
   }
 }
