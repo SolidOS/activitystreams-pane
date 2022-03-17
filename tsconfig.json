@@ -5,7 +5,8 @@
     "strict": false,
     "outDir": "lib",
     "sourceMap": true,
-    "jsx": "react"
+    "jsx": "react",
+    "skipLibCheck": true // otherwise it takes *.d.ts from node_modules see: https://stackoverflow.com/questions/51634361/how-to-force-tsc-to-ignore-node-modules-folder
   },
   "include": [
     "./src/**/*"
