@@ -1,4 +1,4 @@
-export interface Note {
+export type Note = {
   content: string;
   published?: Date;
   attributedTo: Attribution;
