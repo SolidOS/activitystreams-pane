@@ -18,7 +18,6 @@ A visualization of [Activity Streams](https://www.w3.org/TR/activitystreams-voca
 - React
 - Jest
 - Eslint
-- Prettier
 - SolidOS
 
 ### Tests
@@ -26,6 +25,7 @@ A visualization of [Activity Streams](https://www.w3.org/TR/activitystreams-voca
 To run all tests:
 ```shell script
 npm run test
+npm run test:e2e
 ```
 
 #### Unit tests
