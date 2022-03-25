@@ -1,14 +1,9 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const path = require("path");
 
 module.exports = [
   {
     mode: "development",
     entry: ["./dev/index.ts"],
-    output: {
-      path: path.resolve(__dirname, "dist"),
-      filename: "dev.bundle.js",
-    },
     plugins: [new HtmlWebpackPlugin({ template: "./dev/index.html" })],
     module: {
       rules: [
@@ -21,6 +16,7 @@ module.exports = [
     },
     resolve: {
       extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
+      fallback: { "path": false }
     },
     externals: {
       fs: "null",
@@ -34,6 +30,6 @@ module.exports = [
     devServer: {
       static: "./dist",
     },
-    devtool: "source-map",
+    devtool: "source-map"
   },
 ];
