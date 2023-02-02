@@ -36,6 +36,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "acorn": "^7.4.1",
     "pane-registry": "2.4.18",
     "rdflib": "^2.2.25",
     "react": "^17.0.2",
