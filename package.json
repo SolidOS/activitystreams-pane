@@ -37,13 +37,13 @@
   "license": "MIT",
   "dependencies": {
     "acorn": "^8.15.0",
-    "pane-registry": "^2.4.27",
-    "rdflib": "^2.2.36",
+    "pane-registry": "^2.5.0",
+    "rdflib": "^2.2.37",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-jss": "^10.10.0",
-    "solid-logic": "^3.0.8",
-    "solid-ui": "^2.5.1",
+    "solid-logic": "^3.0.9",
+    "solid-ui": "^2.6.0",
     "timeago.js": "^4.0.2"
   },
   "devDependencies": {
