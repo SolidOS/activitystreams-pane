@@ -1,35 +1,35 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-module.exports = [
+export default [
   {
-    mode: "development",
-    entry: ["./dev/index.ts"],
-    plugins: [new HtmlWebpackPlugin({ template: "./dev/index.html" })],
+    mode: 'development',
+    entry: ['./dev/index.ts'],
+    plugins: [new HtmlWebpackPlugin({ template: './dev/index.html' })],
     module: {
       rules: [
         {
           test: /\.(js|jsx|ts|tsx)$/,
           exclude: /node_modules/,
-          use: ["babel-loader"],
+          use: ['babel-loader'],
         },
       ],
     },
     resolve: {
-      extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
-      fallback: { "path": false }
+      extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
+      fallback: { path: false }
     },
     externals: {
-      fs: "null",
-      "node-fetch": "fetch",
-      "isomorphic-fetch": "fetch",
-      xmldom: "window",
-      "text-encoding": "TextEncoder",
-      "whatwg-url": "window",
-      "@trust/webcrypto": "crypto",
+      fs: 'null',
+      'node-fetch': 'fetch',
+      'isomorphic-fetch': 'fetch',
+      xmldom: 'window',
+      'text-encoding': 'TextEncoder',
+      'whatwg-url': 'window',
+      '@trust/webcrypto': 'crypto',
     },
     devServer: {
-      static: "./dist",
+      static: './dist',
     },
-    devtool: "source-map"
+    devtool: 'source-map'
   },
 ];

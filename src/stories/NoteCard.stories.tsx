@@ -2,14 +2,14 @@ import * as React from "react";
 
 import { Note, NoteCard } from "../note";
 
-import { Meta, Story } from "@storybook/react-webpack5";
+import { Meta} from "@storybook/react-webpack5";
 
 export default {
   title: "NoteCard",
   component: NoteCard,
 } as Meta;
 
-const Template: Story = (args: Note) => <NoteCard {...args} />;
+const Template = (args: Note) => <NoteCard {...args} />;
 
 export const TextOnly = Template.bind({});
 TextOnly.args = {

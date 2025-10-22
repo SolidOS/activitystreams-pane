@@ -1,36 +1,89 @@
-// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import storybook from "eslint-plugin-storybook";
-import { defineConfig } from "eslint/config";
-import tsParser from "@typescript-eslint/parser";
-import typescriptEslint from "@typescript-eslint/eslint-plugin";
-import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
+import storybook from 'eslint-plugin-storybook'
+import tsParser from '@typescript-eslint/parser'
+import tseslintPlugin from '@typescript-eslint/eslint-plugin'
+import neostandard from 'neostandard'
+import globals from 'globals'
 
-const compat = new FlatCompat({
-    baseDirectory: import.meta.dirname ?? process.cwd(),
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
-});
-
-export default defineConfig([{
-    languageOptions: {
-        parser: tsParser,
-    },
-
+export default [
+  ...neostandard(),
+  {
+    ignores: [
+      'lib/**',
+      'node_modules/**',
+      'coverage/**',
+      'storybook-static/**'
+    ],
+  },
+  {
+    files: ['src/**/*.ts'],
     plugins: {
-        "@typescript-eslint": typescriptEslint,
-        storybook,
+      '@typescript-eslint': tseslintPlugin,
+      storybook,
     },
-
-    extends: compat.extends(
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended",
-    ),
-
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        Atomics: 'readonly',
+        SharedArrayBuffer: 'readonly',
+      },
+      parser: tsParser,
+      parserOptions: {
+        project: ['./tsconfig.json']
+      },
+    },
+    rules: {
+      semi: ['error', 'never'],
+      quotes: ['error', 'single'],
+      'no-console': 'error',
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      }],
+      '@typescript-eslint/no-explicit-any': 'warn',
+    },
     settings: {
-        react: {
-            version: "detect",
-        },
+      react: {
+        version: 'detect',
+      },
     },
-}]);
+  },
+  {
+    files: ['src/**/*.js', 'src/**/*.cjs', 'src/**/*.mjs'],
+
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        Atomics: 'readonly',
+        SharedArrayBuffer: 'readonly',
+      }
+    },
+    rules: {
+      semi: ['error', 'never'],
+      quotes: ['error', 'single'],
+      'no-console': 'error',
+      'no-unused-vars': 'error',
+      'no-undef': 'error'
+    },
+  },
+  {
+    files: ['e2e-test/**/*.ts', 'test/unit/**/*.ts'],
+    plugins: {
+      'typescript-eslint': tseslintPlugin,
+    },
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: ['./tsconfig.test.json'],
+      },
+    },
+    rules: {
+      semi: ['error', 'never'],
+      quotes: ['error', 'single'],
+      'no-console': 'off', // Allow console in tests
+      'no-undef': 'off', // Tests may define globals
+    }
+  },
+]

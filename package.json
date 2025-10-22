@@ -2,25 +2,28 @@
   "name": "activitystreams-pane",
   "version": "0.7.1",
   "description": "",
+  "main": "lib/index.js",
+  "files": [
+    "/lib",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "clean": "rm -rf lib storybook-static",
+    "build": "npm run clean && npm run build-js",
+    "build-js": "tsc",
+    "lint": "eslint",
+    "test": "jest",
+    "test-e2e": "jest ./e2e-tests --runInBand --forceExit",
+    "prepublishOnly": "npm run lint && npm run test && npm run build",
+    "start": "molid & webpack serve --config webpack.dev.config.js --open",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/solid/activitystreams-pane.git"
   },
-  "main": "lib/index.js",
-  "scripts": {
-    "start": "molid & webpack serve --config webpack.dev.config.js --open",
-    "build": "tsc",
-    "clean": "rm -rf lib storybook-static dist",
-    "test": "jest ./src",
-    "test:e2e": "jest ./e2e-tests --runInBand --forceExit",
-    "lint": "eslint ./src",
-    "prepublishOnly": "npm run lint && npm run test && npm run build",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
-  },
-  "files": [
-    "/lib"
-  ],
   "keywords": [
     "solid",
     "activitystreams",
@@ -75,6 +78,7 @@
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
     "molid": "^0.3.1",
+    "neostandard": "^0.12.2",
     "storybook": "9.1.7",
     "typescript": "^5.9.2",
     "webpack": "^5.101.0",

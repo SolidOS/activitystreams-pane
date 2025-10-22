@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2022",
     "module": "commonjs",
     "strict": false,
     "outDir": "lib",
+    "rootDir": "src/",
     "sourceMap": true,
     "jsx": "react",
     "skipLibCheck": true // otherwise it takes *.d.ts from node_modules see: https://stackoverflow.com/questions/51634361/how-to-force-tsc-to-ignore-node-modules-folder
@@ -11,5 +12,5 @@
   "include": [
     "./src/**/*"
   ],
-  "exclude": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.stories.tsx"]
+  "exclude": ["node_modules", "lib", "coverage", "storybook-static"]
 }

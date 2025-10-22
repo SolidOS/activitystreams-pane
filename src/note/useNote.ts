@@ -1,20 +1,20 @@
-import { read } from "./store/note";
-import { NamedNode, LiveStore } from "rdflib";
-import { isLinkAttribution, Note } from "./types";
-import { useEffect, useState } from "react";
-import { fetchAttribution } from "./store/attribution";
+import { read } from './store/note'
+import { NamedNode, LiveStore } from 'rdflib'
+import { isLinkAttribution, Note } from './types'
+import { useEffect, useState } from 'react'
+import { fetchAttribution } from './store/attribution'
 
 export const useNote = (subject: NamedNode, store: LiveStore): Note => {
-  const [note, setNote] = useState(read(subject, store));
+  const [note, setNote] = useState(read(subject, store))
   useEffect(() => {
-    async function fetch() {
+    async function fetch () {
       if (isLinkAttribution(note.attributedTo)) {
-        const attribution = await fetchAttribution(note.attributedTo, store);
-        setNote({ ...note, attributedTo: attribution });
+        const attribution = await fetchAttribution(note.attributedTo, store)
+        setNote({ ...note, attributedTo: attribution })
       }
     }
-    fetch();
-  }, []);
+    fetch()
+  }, [])
 
-  return note;
-};
+  return note
+}

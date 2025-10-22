@@ -25,12 +25,12 @@ A visualization of [Activity Streams](https://www.w3.org/TR/activitystreams-voca
 To run all tests:
 ```shell script
 npm run test
-npm run test:e2e
+npm run test-e2e
 ```
 
 #### Unit tests
 
-Unit tests use `jest` and are placed next to the tested file as `*.spec.ts` files.
+Unit tests use `jest` and are placed in the test/unit folder and have `*.spec.ts` extension.
 
 #### E2E tests
 
