@@ -28,7 +28,7 @@ export default [
       '@trust/webcrypto': 'crypto',
     },
     devServer: {
-      static: './dist',
+      static: './lib',
     },
     devtool: 'source-map'
   },
