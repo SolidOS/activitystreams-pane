@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "clean": "rm -rf lib storybook-static",
-    "build": "npm run clean && npm run build-js",
+    "build": "npm run clean && npm run build-js && npm run build-storybook",
     "build-js": "tsc",
     "lint": "eslint",
     "test": "jest",
