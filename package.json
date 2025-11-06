@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/solid/activitystreams-pane.git"
+    "url": "git+https://github.com/solid/activitystreams-pane.git"
   },
   "keywords": [
     "solid",
@@ -41,15 +41,16 @@
   },
   "license": "MIT",
   "dependencies": {
-    "acorn": "^8.15.0",
-    "pane-registry": "^2.5.1-0c3d1cb",
-    "rdflib": "^2.2.37",
+    "pane-registry": "^2.5.1-0d5aa53",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-jss": "^10.10.0",
-    "solid-logic": "^3.1.1-da65b2c",
-    "solid-ui": "^2.6.1-45faa7b",
     "timeago.js": "^4.0.2"
+  },
+  "peerDependencies": {
+    "rdflib": "^2.2.37",
+    "solid-logic": "^3.1.1-536a3ae",
+    "solid-ui": "^2.6.1-2343996"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",
@@ -76,11 +77,13 @@
     "eslint": "^9.33.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-storybook": "^9.1.15",
+    "globals": "^16.5.0",
     "html-webpack-plugin": "^5.6.3",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
     "molid": "^0.3.1",
     "neostandard": "^0.12.2",
+    "solid-logic": "^3.1.1-536a3ae",
     "storybook": "^9.1.15",
     "typescript": "^5.9.2",
     "webpack": "^5.101.0",
