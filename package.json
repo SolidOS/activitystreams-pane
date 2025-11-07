@@ -41,16 +41,16 @@
   },
   "license": "MIT",
   "dependencies": {
-    "pane-registry": "^2.5.1-4c50f58",
+    "pane-registry": "^2.5.1-ee1545f",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-jss": "^10.10.0",
     "timeago.js": "^4.0.2"
   },
   "peerDependencies": {
-    "rdflib": "^2.2.37",
-    "solid-logic": "^3.1.1-d167ace",
-    "solid-ui": "^2.6.1-6458d4e"
+    "rdflib": "^2.3.0",
+    "solid-logic": "^3.1.1-3343cc7",
+    "solid-ui": "^2.6.1-c6fc7fe"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",
@@ -83,7 +83,7 @@
     "jest-environment-jsdom": "^30.0.5",
     "molid": "^0.3.1",
     "neostandard": "^0.12.2",
-    "solid-logic": "^3.1.1-d167ace",
+    "solid-logic": "^3.1.1-3343cc7",
     "storybook": "^9.1.15",
     "typescript": "^5.9.2",
     "webpack": "^5.101.0",
