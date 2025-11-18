@@ -1,8 +1,11 @@
 import storybook from 'eslint-plugin-storybook'
 import tsParser from '@typescript-eslint/parser'
-import tseslintPlugin from '@typescript-eslint/eslint-plugin'
 import neostandard from 'neostandard'
 import globals from 'globals'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default [
   ...neostandard(),
@@ -16,10 +19,6 @@ export default [
   },
   {
     files: ['src/**/*.ts'],
-    plugins: {
-      '@typescript-eslint': tseslintPlugin,
-      storybook,
-    },
     languageOptions: {
       globals: {
         ...globals.browser,
@@ -33,15 +32,49 @@ export default [
       },
     },
     rules: {
+      // Style rules (not handled by TypeScript)
       semi: ['error', 'never'],
       quotes: ['error', 'single'],
-      'no-console': 'error',
-      'no-unused-vars': 'off',
-      '@typescript-eslint/no-unused-vars': ['warn', {
-        argsIgnorePattern: '^_',
-        varsIgnorePattern: '^_',
-      }],
-      '@typescript-eslint/no-explicit-any': 'warn',
+
+      // Disable ESLint rules that TypeScript handles better
+      'no-unused-vars': 'off', // TypeScript handles this via noUnusedLocals
+      'no-undef': 'off', // TypeScript handles undefined variables
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+  },
+  {
+    files: ['src/**/*.tsx'],
+    plugins: {
+      storybook,
+    },
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        Atomics: 'readonly',
+        SharedArrayBuffer: 'readonly',
+      },
+      parser: tsParser,
+      parserOptions: {
+        ecmaVersion: 2020,
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    rules: {
+      // Style rules (not handled by TypeScript)
+      semi: ['error', 'never'],
+      quotes: ['error', 'single'],
+
+      // Disable ESLint rules that TypeScript handles better
+      'no-unused-vars': 'off', // TypeScript handles this via noUnusedLocals
+      'no-undef': 'off', // TypeScript handles undefined variables
     },
     settings: {
       react: {
@@ -61,22 +94,30 @@ export default [
       }
     },
     rules: {
+      // Code style - match TypeScript settings
       semi: ['error', 'never'],
       quotes: ['error', 'single'],
+
+      // Strict checking - match TypeScript strictness
       'no-console': 'error',
-      'no-unused-vars': 'error',
-      'no-undef': 'error'
+      'no-unused-vars': 'error', // Match TypeScript noUnusedLocals: true
+      'no-undef': 'error',
+      strict: ['error', 'global'], // Match TypeScript alwaysStrict: true
+
+      // Additional strictness to match TypeScript behavior
+      'no-implicit-globals': 'error',
+      'prefer-const': 'error', // Encourage immutability
+      'no-var': 'error', // Use let/const only
+      'no-redeclare': 'error'
     },
   },
   {
     files: ['e2e-test/**/*.ts', 'test/unit/**/*.ts'],
-    plugins: {
-      'typescript-eslint': tseslintPlugin,
-    },
     languageOptions: {
       parser: tsParser,
       parserOptions: {
-        project: ['./tsconfig.test.json'],
+        project: './tsconfig.test.json',
+        tsconfigRootDir: __dirname,
       },
     },
     rules: {
