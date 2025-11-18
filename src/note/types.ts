@@ -4,32 +4,32 @@ export type Note = {
   attributedTo: Attribution;
 }
 
-export type Attribution = NoAttribution | LinkAttribution | PersonAttribution;
+export type Attribution = NoAttribution | LinkAttribution | PersonAttribution
 
 export interface NoAttribution {
-  discriminator: "NoAttribution";
+  discriminator: 'NoAttribution';
 }
 
 export interface LinkAttribution {
-  discriminator: "LinkAttribution";
+  discriminator: 'LinkAttribution';
   uri: string;
 }
 
-export function isLinkAttribution(
+export function isLinkAttribution (
   attribution: Attribution
 ): attribution is LinkAttribution {
-  return attribution.discriminator === "LinkAttribution";
+  return attribution.discriminator === 'LinkAttribution'
 }
 
 export interface PersonAttribution {
-  discriminator: "PersonAttribution";
+  discriminator: 'PersonAttribution';
   webId: string;
   name: string;
   imageSrc?: string;
 }
 
-export function isPersonAttribution(
+export function isPersonAttribution (
   attribution: Attribution
 ): attribution is PersonAttribution {
-  return attribution.discriminator === "PersonAttribution";
+  return attribution.discriminator === 'PersonAttribution'
 }

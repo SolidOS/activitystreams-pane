@@ -1,5 +1,4 @@
-
 export const parameters = {
   actions: { },
 }
-export const tags = ["autodocs"];
+export const tags = ['autodocs']

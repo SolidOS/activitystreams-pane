@@ -1,88 +1,88 @@
-import { ns } from "solid-ui";
-import { NamedNode, Node, sym, LiveStore } from "rdflib";
-import { Attribution, LinkAttribution, PersonAttribution } from "../types";
+import { ns } from 'solid-ui'
+import { NamedNode, Node, sym, LiveStore } from 'rdflib'
+import { Attribution, LinkAttribution, PersonAttribution } from '../types'
 
 /**
  * Constructs an attribution object for the node the subject is attributed to.
  */
-export function readAttribution(
+export function readAttribution (
   subject: NamedNode,
   store: LiveStore
 ): Attribution {
-  const attributedTo: Node = store.any(subject, ns.as("attributedTo"));
-  return read(attributedTo, store);
+  const attributedTo: Node = store.any(subject, ns.as('attributedTo'))
+  return read(attributedTo, store)
 }
 
-function containsPersonType(types): boolean {
-  const as = ns.as("Person").uri;
-  const foaf = ns.foaf("Person").uri;
-  const vcard = ns.vcard("Individual").uri;
-  const schema = ns.schema("Person").uri;
-  return types[as] || types[foaf] || types[vcard] || types[schema];
+function containsPersonType (types): boolean {
+  const as = ns.as('Person').uri
+  const foaf = ns.foaf('Person').uri
+  const vcard = ns.vcard('Individual').uri
+  const schema = ns.schema('Person').uri
+  return types[as] || types[foaf] || types[vcard] || types[schema]
 }
 
 /**
  * Constructs an attribution object for the given node with data read from the store
  */
-function read(attributedTo: Node, store: LiveStore): Attribution {
+function read (attributedTo: Node, store: LiveStore): Attribution {
   if (attributedTo instanceof NamedNode) {
-    const types = store.findTypeURIs(attributedTo);
+    const types = store.findTypeURIs(attributedTo)
     if (containsPersonType(types)) {
-      return readPerson(store, attributedTo);
+      return readPerson(store, attributedTo)
     } else {
       return {
-        discriminator: "LinkAttribution",
+        discriminator: 'LinkAttribution',
         uri: attributedTo.uri,
-      };
+      }
     }
   }
   return {
-    discriminator: "NoAttribution",
-  };
+    discriminator: 'NoAttribution',
+  }
 }
 
-function readPerson(
+function readPerson (
   store: LiveStore,
   attributedTo: NamedNode
 ): PersonAttribution {
   const name: string =
-    store.anyValue(attributedTo, ns.as("name")) ||
-    store.anyValue(attributedTo, ns.foaf("name")) ||
-    store.anyValue(attributedTo, ns.vcard("fn")) ||
-    store.anyValue(attributedTo, ns.schema("name")) ||
-    "";
-  const imageSrc = readImageSrc(store, attributedTo);
+    store.anyValue(attributedTo, ns.as('name')) ||
+    store.anyValue(attributedTo, ns.foaf('name')) ||
+    store.anyValue(attributedTo, ns.vcard('fn')) ||
+    store.anyValue(attributedTo, ns.schema('name')) ||
+    ''
+  const imageSrc = readImageSrc(store, attributedTo)
   return {
-    discriminator: "PersonAttribution",
+    discriminator: 'PersonAttribution',
     webId: attributedTo.uri,
     name,
     imageSrc,
-  };
+  }
 }
 
-function readImageSrc(
+function readImageSrc (
   store: LiveStore,
   attributedTo: NamedNode
 ): string | undefined {
-  const image: string | void = store.anyValue(attributedTo, ns.as("image"));
+  const image: string | void = store.anyValue(attributedTo, ns.as('image'))
   if (image) {
-    return store.anyValue(sym(image), ns.as("url")) || undefined;
+    return store.anyValue(sym(image), ns.as('url')) || undefined
   }
   return (
-    store.anyValue(attributedTo, ns.foaf("img")) ||
-    store.anyValue(attributedTo, ns.vcard("hasPhoto")) ||
+    store.anyValue(attributedTo, ns.foaf('img')) ||
+    store.anyValue(attributedTo, ns.vcard('hasPhoto')) ||
     undefined
-  );
+  )
 }
 
 /**
  * Fetches the given attribution uri and returns an updated attribution with data from the fetched resource
  */
-export async function fetchAttribution(
+export async function fetchAttribution (
   attribution: LinkAttribution,
   store: LiveStore
 ): Promise<Attribution> {
-  const attributionNode = sym(attribution.uri);
-  await store.fetcher.load(attributionNode);
-  return read(attributionNode, store);
+  const attributionNode = sym(attribution.uri)
+  await store.fetcher.load(attributionNode)
+  return read(attributionNode, store)
 }

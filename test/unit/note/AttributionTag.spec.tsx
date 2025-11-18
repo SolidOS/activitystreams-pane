@@ -1,6 +1,6 @@
-import * as React from "react";
-import { render, screen } from "@testing-library/react";
-import { AttributionTag } from "./AttributionTag";
+import React from 'react'
+import { render, screen } from '@testing-library/react'
+import { AttributionTag } from '../../../src/note/AttributionTag'
 
 describe("AttributionTag", () => {
   describe("attribution to person without image", () => {

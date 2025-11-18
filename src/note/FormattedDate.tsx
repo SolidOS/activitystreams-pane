@@ -1,7 +1,7 @@
-import { ReactElement } from "react";
-import * as React from "react";
+import { ReactElement } from 'react'
+import * as React from 'react'
 
-import { format } from "timeago.js";
+import { format } from 'timeago.js'
 
 interface Props {
   className: string;
@@ -14,15 +14,15 @@ const twoDigitsDateTime = {
   day: '2-digit',
   hour: '2-digit',
   minute: '2-digit'
-} as const;
+} as const
 
 export const FormattedDate = ({ value, className }: Props): ReactElement => {
-  if (!value) return null;
-  const formatted = value.toLocaleDateString(undefined, twoDigitsDateTime);
-  const relative = format(value);
+  if (!value) return null
+  const formatted = value.toLocaleDateString(undefined, twoDigitsDateTime)
+  const relative = format(value)
   return (
     <p className={className}>
       {relative} · {formatted}
     </p>
-  );
-};
+  )
+}
