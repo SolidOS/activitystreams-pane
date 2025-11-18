@@ -44,7 +44,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "pane-registry": "^2.5.1-f5c2189",
+    "pane-registry": "^2.5.1-cfba46d",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-jss": "^10.10.0",
@@ -52,8 +52,8 @@
   },
   "peerDependencies": {
     "rdflib": "^2.3.0",
-    "solid-logic": "^3.1.1-bf9b34c",
-    "solid-ui": "^2.6.1-c3ff185"
+    "solid-logic": "^3.1.1-a44ca66",
+    "solid-ui": "^2.6.1-e78cbe5"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",
@@ -85,7 +85,7 @@
     "jest-environment-jsdom": "^30.0.5",
     "molid": "^0.3.1",
     "neostandard": "^0.12.2",
-    "solid-logic": "^3.1.1-bf9b34c",
+    "solid-logic": "^3.1.1-a44ca66",
     "storybook": "^9.1.15",
     "typescript": "^5.9.2",
     "webpack": "^5.101.0",
