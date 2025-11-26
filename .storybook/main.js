@@ -17,6 +17,11 @@ module.exports = {
       fallback: {
         ...config.resolve.fallback,
         path: false
+      },
+      alias: {
+        ...(config.resolve.alias || {}),
+        $rdf: require.resolve('rdflib'),
+        SolidLogic: require.resolve('solid-logic'),
       }
     }
     return config
