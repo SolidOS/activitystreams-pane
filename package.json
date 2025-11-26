@@ -52,7 +52,7 @@
   },
   "peerDependencies": {
     "rdflib": "^2.3.0",
-    "solid-logic": "^3.1.1-a44ca66",
+    "solid-logic": "3.1.1-8dffdcb",
     "solid-ui": "^2.6.1-5ad23f4"
   },
   "devDependencies": {
@@ -85,7 +85,6 @@
     "jest-environment-jsdom": "^30.0.5",
     "molid": "^0.3.1",
     "neostandard": "^0.12.2",
-    "solid-logic": "^3.1.1-8dffdcb",
     "storybook": "^9.1.15",
     "typescript": "^5.9.2",
     "webpack": "^5.101.0",
