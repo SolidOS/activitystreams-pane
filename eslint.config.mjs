@@ -112,7 +112,7 @@ export default [
     },
   },
   {
-    files: ['e2e-test/**/*.ts', 'test/unit/**/*.ts'],
+    files: ['e2e-test/**/*.ts', 'test/unit/**/*.ts', 'test/unit/**/*.tsx'],
     languageOptions: {
       parser: tsParser,
       parserOptions: {

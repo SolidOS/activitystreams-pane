@@ -16,7 +16,15 @@ export default [
     },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      fallback: { path: false }
+      alias: {
+        $rdf: 'rdflib',
+        rdflib: 'rdflib',
+        SolidLogic: 'solid-logic',
+        'solid-logic': 'solid-logic',
+        UI: 'solid-ui',
+        'solid-ui': 'solid-ui',
+      },
+      fallback: { path: false },
     },
     externals: {
       fs: 'null',
