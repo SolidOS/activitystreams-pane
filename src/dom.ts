@@ -1,9 +1,10 @@
-import { render } from "react-dom";
-import { ReactElement } from "react";
+import { createRoot } from 'react-dom/client'
+import { ReactElement } from 'react'
 
-export function createElement(jsx: ReactElement): HTMLElement {
-  const element = document.createElement("div");
-  element.style.padding = "1em";
-  render(jsx, element);
-  return element;
+export function createElement (jsx: ReactElement): HTMLElement {
+  const element = document.createElement('div')
+  element.style.padding = '1em'
+  const root = createRoot(element)
+  root.render(jsx)
+  return element
 }
