@@ -1,6 +1,6 @@
 {
   "name": "activitystreams-pane",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "lib/index.js",
   "files": [
@@ -44,16 +44,16 @@
   },
   "license": "MIT",
   "dependencies": {
-    "pane-registry": "^3.0.1",
+    "pane-registry": "^3.0.2",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-jss": "^10.10.0",
     "timeago.js": "^4.0.2"
   },
   "peerDependencies": {
-    "rdflib": "^2.3.5",
-    "solid-logic": "^4.0.2",
-    "solid-ui": "^3.0.3"
+    "rdflib": "^2.3.6",
+    "solid-logic": "^4.0.6",
+    "solid-ui": "^3.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.28.6",
