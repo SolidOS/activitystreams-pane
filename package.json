@@ -62,7 +62,7 @@
     "@babel/preset-typescript": "^7.28.5",
     "@chromatic-com/storybook": "^5.0.0",
     "@eslint/eslintrc": "^3.3.3",
-    "@eslint/js": "^9.39.2",
+    "@eslint/js": "^10.0.1",
     "@storybook/addon-docs": "^10.2.0",
     "@storybook/addon-links": "^10.2.0",
     "@storybook/addon-webpack5-compiler-babel": "^4.0.0",
