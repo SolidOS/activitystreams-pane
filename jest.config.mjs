@@ -11,6 +11,7 @@ export default {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   extensionsToTreatAsEsm: ['.ts', '.tsx'],
   moduleNameMapper: {
+    '^SolidLogic$': 'solid-logic',
     '^\\$rdf$': 'rdflib'
   },
 }
