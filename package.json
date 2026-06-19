@@ -44,6 +44,8 @@
   },
   "license": "MIT",
   "dependencies": {
+    "cat": "^0.2.0",
+    "package": "^1.0.1",
     "pane-registry": "^3.0.2",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
