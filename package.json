@@ -90,8 +90,8 @@
     "webpack-dev-server": "^5.2.3"
   },
   "solidosDependencies": [
-    "rdflib",
     "pane-registry",
+    "rdflib",
     "solid-logic",
     "solid-ui"
   ]
