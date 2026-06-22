@@ -46,7 +46,7 @@
   "dependencies": {
     "pane-registry": "3.1.2-0",
     "patch-package": "^8.0.1",
-    "rdflib": "2.3.9",
+    "rdflib": "^2.3.8",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-jss": "^10.10.0",
@@ -90,8 +90,8 @@
     "webpack-dev-server": "^5.2.3"
   },
   "solidosDependencies": [
-    "pane-registry",
     "rdflib",
+    "pane-registry",
     "solid-logic",
     "solid-ui"
   ]
