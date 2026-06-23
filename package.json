@@ -1,6 +1,6 @@
 {
   "name": "activitystreams-pane",
-  "version": "1.0.3-1",
+  "version": "1.0.3-3",
   "description": "",
   "main": "lib/index.js",
   "files": [
@@ -20,7 +20,6 @@
     "test-e2e": "jest ./e2e-tests --runInBand --forceExit",
     "prepublishOnly": "npm run test && npm run build",
     "preversion": "npm run lint && npm run typecheck && npm test",
-    "postversion": "git push origin main --follow-tags",
     "start": "molid & webpack serve --config webpack.dev.config.mjs --open",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -51,7 +50,7 @@
     "react-dom": "^19.2.3",
     "react-jss": "^10.10.0",
     "solid-logic": "4.0.8-0",
-    "solid-ui": "3.1.3-3",
+    "solid-ui": "3.1.3-4",
     "timeago.js": "^4.0.2"
   },
   "devDependencies": {
