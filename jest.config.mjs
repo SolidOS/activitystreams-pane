@@ -1,5 +1,6 @@
 export default {
   testEnvironment: 'jsdom',
+  setupFiles: ['./test/helpers/globals.js'],
   setupFilesAfterEnv: ['./test/jest.setup.ts'],
   testEnvironmentOptions: {
     customExportConditions: ['node']
