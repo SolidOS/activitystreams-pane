@@ -30,6 +30,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event_name == 'pull_request' && format('refs/pull/{0}/head', github.event.number) || github.ref_name }}
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v6
         with:
@@ -86,7 +89,7 @@ jobs:
           name: build
       - uses: actions/setup-node@v6
         with:
-          node-version: 20 # required for OIDC npm@latest
+          node-version: 22 # required for OIDC npm@latest
           registry-url: 'https://registry.npmjs.org'
       - name: Update npm to latest (required for OIDC)
         run: npm install -g npm@latest
