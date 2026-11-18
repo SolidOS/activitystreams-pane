@@ -74,7 +74,7 @@
     "babel-jest": "^30.2.0",
     "babel-loader": "^10.0.0",
     "babel-plugin-transform-import-meta": "^2.3.3",
-    "eslint": "^9.39.2",
+    "eslint": "^10.11.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-storybook": "^10.2.0",
     "globals": "^17.1.0",
